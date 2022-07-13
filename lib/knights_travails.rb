@@ -11,15 +11,15 @@ class Tree
 
   def out_of_bounds?(coordinate)
     return false if board.dig(coordinate[0], coordinate[1])
-  
+
     true
   end
-end
 
-def find_moves(coordinate)
-  x = coordinate[0]
-  y = coordinate[1]
-  moves = [[x + 1, y + 2], [x + 1, y - 2], [x - 1, y + 2], [x - 1, y - 2], [x + 2, y + 1], [x + 2, y - 1], [x - 2, y + 1], [x - 2, y - 1]]
+  def find_moves(coordinate)
+    x = coordinate[0]
+    y = coordinate[1]
+    moves = [[x + 1, y + 2], [x + 1, y - 2], [x - 1, y + 2], [x - 1, y - 2], [x + 2, y + 1], [x + 2, y - 1], [x - 2, y + 1], [x - 2, y - 1]]
+  end
 end
 
 def knight_moves(start, finish)
