@@ -6,3 +6,9 @@ def out_of_bounds?(coordinate)
 
   true
 end
+
+def find_moves(coordinate)
+  x = coordinate[0]
+  y = coordinate[1]
+  moves = [[x + 1, y + 2], [x + 1, y - 2], [x - 1, y + 2], [x - 1, y - 2], [y + 2, x + 1], [y + 2, x - 1], [y - 2, x + 1], [y - 2, x - 1]]
+end
