@@ -1,10 +1,12 @@
 require 'pry-byebug'
 
 class Tree
-  attr_reader :board
+  attr_reader :board, :given_node
+  attr_accessor :children
 
   def initialize(start, finish)
     @root = start
+    @children = nil
     @given_node = finish
     @board = Array.new(8) { Array.new(8, 'x') }
   end
