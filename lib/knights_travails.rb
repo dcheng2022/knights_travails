@@ -40,10 +40,23 @@ class Tree
     valid_moves.each { |move| node.children << Node.new(move) }
     node.children.each do |child_node|
       sequence << node.data
-      puts "sequence: #{sequence} child_node: #{child_node.data}"
-      create_tree(child_node, sequence)
-
+      # puts "sequence: #{sequence} child_node: #{child_node.data}"
+      create_tree_exhaustive(child_node, sequence)
       sequence.pop
+    end
+  end
+
+  def create_tree_queue
+    queue = [root]
+    move_history = []
+    loop do
+      discovered_node = queue.pop
+      move_history << discovered_node.data
+      valid_moves = find_moves(discovered_node.data).reject { |move| out_of_bounds?(move) || move_history.include?(move) }
+      valid_moves.each { |move| discovered_node.children << Node.new(move) }
+      return if valid_moves.include?(given_node.data)
+
+      discovered_node.children.each { |child_node| queue.unshift(child_node) }
     end
   end
 end
