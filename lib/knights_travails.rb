@@ -71,5 +71,11 @@ class Tree
 end
 
 def knight_moves(start, finish)
+  return if start == finish
+
   tree = Tree.new(start, finish)
+  tree.create_tree_queue
+  path = tree.find_path
+  puts "You made it in #{path.length - 1} moves! Here's your path:"
+  path.each { |move| puts "  #{move}" }
 end
