@@ -27,7 +27,9 @@ class Tree
   def find_moves(coordinate)
     x = coordinate[0]
     y = coordinate[1]
-    moves = [[x + 1, y + 2], [x + 1, y - 2], [x - 1, y + 2], [x - 1, y - 2], [x + 2, y + 1], [x + 2, y - 1], [x - 2, y + 1], [x - 2, y - 1]]
+    moves_array = []
+    [-2, -1, 1, 2].permutation(2) { |perm| moves_array << [x + perm[0], y + perm[1]] unless (perm[0] + perm[1]).zero? }
+    moves_array
   end
 end
 
