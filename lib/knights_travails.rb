@@ -31,6 +31,21 @@ class Tree
     [-2, -1, 1, 2].permutation(2) { |perm| moves_array << [x + perm[0], y + perm[1]] unless (perm[0] + perm[1]).zero? }
     moves_array
   end
+
+  def create_tree_exhaustive(node = root, sequence = [])
+    return if node.data == given_node.data
+
+    possible_moves = find_moves(node.data)
+    valid_moves = possible_moves.reject { |move| out_of_bounds?(move) || sequence.include?(move) }
+    valid_moves.each { |move| node.children << Node.new(move) }
+    node.children.each do |child_node|
+      sequence << node.data
+      puts "sequence: #{sequence} child_node: #{child_node.data}"
+      create_tree(child_node, sequence)
+
+      sequence.pop
+    end
+  end
 end
 
 def knight_moves(start, finish)
