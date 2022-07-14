@@ -59,6 +59,16 @@ class Tree
       discovered_node.children.each { |child_node| queue.unshift(child_node) }
     end
   end
+
+  def find_path(node = root, path = [])
+    return path.unshift(node.data) if node.data == given_node.data
+
+    node.children.each do |child_node|
+      return path.unshift(node.data)  if find_path(child_node, path)
+    end
+    false
+  end
+
 end
 
 def knight_moves(start, finish)
