@@ -1,18 +1,26 @@
 require 'pry-byebug'
 
+class Node
+  attr_accessor :data, :children
+
+  def initialize(data = nil)
+    @data = data
+    @children = []
+  end
+end
+
 class Tree
-  attr_reader :board, :given_node
+  attr_reader :board, :given_node, :root
   attr_accessor :children
 
   def initialize(start, finish)
-    @root = start
-    @children = nil
-    @given_node = finish
+    @root = Node.new(start)
+    @given_node = Node.new(finish)
     @board = Array.new(8) { Array.new(8, 'x') }
   end
 
   def out_of_bounds?(coordinate)
-    return false if board.dig(coordinate[0], coordinate[1])
+    return false if board.dig(coordinate[0], coordinate[1]) && coordinate.all? { |num| num >= 0 }
 
     true
   end
