@@ -10,17 +10,16 @@ class Node
 end
 
 class Tree
-  attr_reader :board, :given_node, :root
+  attr_reader :given_node, :root
   attr_accessor :children
 
   def initialize(start, finish)
     @root = Node.new(start)
     @given_node = Node.new(finish)
-    @board = Array.new(8) { Array.new(8, 'x') }
   end
 
   def out_of_bounds?(coordinate)
-    return false if board.dig(coordinate[0], coordinate[1]) && coordinate.all? { |num| num >= 0 }
+    return false if coordinate.all? { |num| (0..7).include?(num) }
 
     true
   end
