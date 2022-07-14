@@ -68,7 +68,6 @@ class Tree
     end
     false
   end
-
 end
 
 def knight_moves(start, finish)
